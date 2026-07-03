@@ -11,13 +11,17 @@ body {
 }
 
 .app {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    min-height: 100vh;
 }
 
 .screen {
     display: none;
+    width: 100%;
+    max-width: 390px;
+    min-height: 100vh;
+    padding: 34px 30px 44px;
 }
 
 .screen.active {
@@ -27,9 +31,6 @@ body {
 /* HOME */
 
 .home-screen {
-    width: 100%;
-    max-width: 390px;
-    min-height: 100vh;
     padding: 70px 40px 40px;
     text-align: center;
 }
@@ -38,15 +39,10 @@ h1 {
     font-size: 42px;
     font-weight: 300;
     margin-bottom: 70px;
-    letter-spacing: 0.5px;
 }
 
 h1 strong {
     font-weight: 700;
-}
-
-.logo {
-    margin-bottom: 70px;
 }
 
 .logo-image {
@@ -55,24 +51,24 @@ h1 strong {
 }
 
 .tagline {
-    font-family: "Jost", sans-serif;
     font-size: 17px;
     font-weight: 500;
     line-height: 1.6;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #2E6B3F;
+    margin-bottom: 70px;
 }
 
 .scores {
-    margin-bottom: 80px;
+    margin-bottom: 70px;
 }
 
 .score-row {
     display: grid;
     grid-template-columns: 1fr 70px;
-    align-items: center;
     gap: 18px;
+    align-items: center;
     margin-bottom: 24px;
     text-align: left;
 }
@@ -83,64 +79,52 @@ h1 strong {
 }
 
 .score-row strong {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 32px;
-    background: white;
-    color: black;
+    background: #fff;
+    color: #000;
     border-radius: 4px;
-    font-size: 18px;
-    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+/* GENERAL BUTTONS */
 
 button {
     font-family: "Jost", sans-serif;
     cursor: pointer;
 }
 
-/* NEW ROUND */
-
-.new-round-screen {
-    width: 100%;
-    max-width: 390px;
-    min-height: 100vh;
-    padding: 34px 30px 44px;
-}
-
-.screen-header {
-    position: relative;
-    margin-bottom: 54px;
-}
-
-.screen-header h2 {
-    text-align: center;
-    font-size: 34px;
-    font-weight: 700;
-    letter-spacing: 0;
-}
-
-.back-button {
-    position: absolute;
-    left: -6px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
+.primary-link {
+    display: block;
+    margin: 0 auto;
     background: transparent;
     border: none;
     color: white;
+    font-size: 34px;
+    font-weight: 500;
 }
 
-.back-button svg {
-    width: 34px;
-    height: 34px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.secondary-link {
+    display: block;
+    margin: 22px auto 0;
+    background: transparent;
+    border: none;
+    color: #777;
+    font-size: 18px;
+    font-weight: 300;
 }
+
+.back-button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 48px;
+}
+
+/* FORMS */
 
 .form-group {
     margin-bottom: 30px;
@@ -157,59 +141,75 @@ button {
     color: #2E6B3F;
 }
 
-input {
+input,
+textarea {
     width: 100%;
-    height: 58px;
-    padding: 0 20px;
     background: #111;
     border: 1px solid #333;
     border-radius: 14px;
     color: white;
     font-family: "Jost", sans-serif;
-    font-size: 25px;
+    font-size: 24px;
     font-weight: 300;
 }
 
-#handicap {
-    text-align: center;
+input {
+    height: 58px;
+    padding: 0 20px;
 }
 
-input:focus {
+textarea {
+    min-height: 92px;
+    padding: 16px 18px;
+    resize: vertical;
+    font-size: 18px;
+}
+
+input:focus,
+textarea:focus {
     outline: none;
     border-color: #2E6B3F;
 }
 
-.choice-group {
+#handicap,
+#profileHandicap {
+    text-align: center;
+}
+
+/* CHOICE BUTTONS */
+
+.button-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.button-stack {
     display: grid;
     gap: 14px;
 }
 
-.tee-choice {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.choice-button {
-    width: 100%;
+.choice-button,
+.check-button {
     min-height: 58px;
-    padding: 14px;
     border: 1px solid #333;
     border-radius: 16px;
     background: #111;
     color: white;
     font-size: 21px;
     font-weight: 500;
-    text-align: center;
 }
 
-.choice-button.active-choice {
-    border-color: #2E6B3F;
+.choice-button.active-choice,
+.check-button.active-choice {
     background: #2E6B3F;
+    border-color: #2E6B3F;
     color: white;
 }
 
-.start-button {
+.play-button {
     width: 100%;
-    margin-top: 36px;
+    margin-top: 34px;
     padding: 22px;
     border: none;
     border-radius: 999px;
@@ -218,26 +218,51 @@ input:focus {
     font-size: 25px;
     font-weight: 700;
 }
-/* SETTINGS BUTTON ON HOME */
 
-.secondary-button {
-    display: block;
-    margin: 22px auto 0;
+/* SETTINGS */
 
-    background: transparent;
-    border: none;
-
-    color: #777;
-
-    font-size: 18px;
-    font-weight: 300;
+.settings-screen h2,
+.hole-screen h2 {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 34px;
 }
 
-/* SETTINGS SCREEN */
+/* HOLE SCREEN */
 
-.settings-screen {
-    width: 100%;
-    max-width: 390px;
-    min-height: 100vh;
-    padding: 34px 30px 44px;
+.hole-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 34px;
+}
+
+.hole-info span {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 14px;
+    padding: 12px 6px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.putt-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.check-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 8px 0 30px;
 }

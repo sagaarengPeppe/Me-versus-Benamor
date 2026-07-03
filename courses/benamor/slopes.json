@@ -1,0 +1,35 @@
+{
+  "course": "Benamor Golf",
+  "maxHandicapIndex": 36,
+  "ratings": {
+    "men": {
+      "white": {
+        "full": { "courseRating": 68.2, "slopeRating": 121, "par": 71 },
+        "front9": { "courseRating": 34.3, "slopeRating": 122, "par": 36 },
+        "back9": { "courseRating": 34.0, "slopeRating": 120, "par": 35 }
+      },
+      "yellow": {
+        "full": { "courseRating": 66.7, "slopeRating": 118, "par": 71 },
+        "front9": { "courseRating": 33.5, "slopeRating": 119, "par": 36 },
+        "back9": { "courseRating": 33.2, "slopeRating": 117, "par": 35 }
+      },
+      "red": {
+        "full": { "courseRating": 64.6, "slopeRating": 114, "par": 71 },
+        "front9": { "courseRating": 32.6, "slopeRating": 115, "par": 36 },
+        "back9": { "courseRating": 32.0, "slopeRating": 112, "par": 35 }
+      }
+    },
+    "women": {
+      "yellow": {
+        "full": { "courseRating": 71.5, "slopeRating": 123, "par": 71 },
+        "front9": { "courseRating": 35.9, "slopeRating": 125, "par": 36 },
+        "back9": { "courseRating": 35.7, "slopeRating": 121, "par": 35 }
+      },
+      "red": {
+        "full": { "courseRating": 69.0, "slopeRating": 118, "par": 71 },
+        "front9": { "courseRating": 34.8, "slopeRating": 121, "par": 36 },
+        "back9": { "courseRating": 34.3, "slopeRating": 115, "par": 35 }
+      }
+    }
+  }
+}

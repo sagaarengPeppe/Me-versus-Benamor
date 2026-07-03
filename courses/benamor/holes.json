@@ -1,0 +1,21 @@
+[
+  { "hole": 1, "par": 4, "strokeIndex": 9, "length": { "white": 308, "yellow": 302, "red": 294 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 2, "par": 3, "strokeIndex": 7, "length": { "white": 143, "yellow": 124, "red": 115 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 3, "par": 4, "strokeIndex": 17, "length": { "white": 269, "yellow": 247, "red": 220 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 4, "par": 4, "strokeIndex": 13, "length": { "white": 237, "yellow": 229, "red": 212 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 5, "par": 5, "strokeIndex": 1, "length": { "white": 466, "yellow": 446, "red": 426 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 6, "par": 4, "strokeIndex": 5, "length": { "white": 379, "yellow": 358, "red": 340 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 7, "par": 5, "strokeIndex": 15, "length": { "white": 431, "yellow": 413, "red": 394 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 8, "par": 3, "strokeIndex": 3, "length": { "white": 185, "yellow": 165, "red": 149 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 9, "par": 4, "strokeIndex": 11, "length": { "white": 320, "yellow": 312, "red": 261 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+
+  { "hole": 10, "par": 3, "strokeIndex": 10, "length": { "white": 149, "yellow": 139, "red": 96 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 11, "par": 4, "strokeIndex": 18, "length": { "white": 252, "yellow": 244, "red": 197 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 12, "par": 3, "strokeIndex": 16, "length": { "white": 154, "yellow": 143, "red": 121 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 13, "par": 4, "strokeIndex": 8, "length": { "white": 289, "yellow": 276, "red": 247 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 14, "par": 4, "strokeIndex": 2, "length": { "white": 345, "yellow": 300, "red": 276 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 15, "par": 5, "strokeIndex": 14, "length": { "white": 454, "yellow": 434, "red": 408 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 16, "par": 4, "strokeIndex": 6, "length": { "white": 398, "yellow": 386, "red": 366 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 17, "par": 3, "strokeIndex": 12, "length": { "white": 165, "yellow": 142, "red": 118 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" },
+  { "hole": 18, "par": 5, "strokeIndex": 4, "length": { "white": 512, "yellow": 495, "red": 479 }, "dogleg": null, "focus": "", "strategy": "", "notes": "", "photo": "" }
+]
