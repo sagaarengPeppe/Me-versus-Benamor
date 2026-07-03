@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me versus Benamor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<main class="app">
+
+    <section class="screen home-screen active" id="homeScreen">
+        <h1><strong>Me</strong> versus</h1>
+
+        <div class="logo">
+            <img src="images/benamor-logo.png" alt="Benamor Golf" class="logo-image">
+
+            <p class="tagline">
+                Track. Learn.<br>
+                Beat the course.
+            </p>
+        </div>
+
+        <div class="scores">
+            <div class="score-row">
+                <span>Last score</span>
+                <strong id="lastScore">--</strong>
+            </div>
+
+            <div class="score-row">
+                <span>Best score</span>
+                <strong id="bestScore">--</strong>
+            </div>
+        </div>
+
+        <button id="newRound">New round</button>
+        <button class="secondary-button" id="settingsButton">
+    Settings
+</button>
+    </section>
+
+
+    <section class="screen new-round-screen" id="newRoundScreen">
+
+        <div class="screen-header">
+            <button class="back-button" id="backToHome" aria-label="Back">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15 5L8 12L15 19" />
+                </svg>
+            </button>
+
+            <h2></h2>
+        </div>
+
+        <div class="form-group">
+            <label>Date</label>
+            <input type="text" id="roundDate" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Handicap</label>
+            <input type="number" id="handicap" placeholder="24.3" step="0.1">
+        </div>
+
+        <div class="form-group">
+            <label>Tee</label>
+
+            <div class="choice-group tee-choice">
+                <button class="choice-button tee-button" data-tee="White">White</button>
+                <button class="choice-button tee-button" data-tee="Yellow">Yellow</button>
+                <button class="choice-button tee-button active-choice" data-tee="Red">Red</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Round type</label>
+
+            <div class="choice-group">
+                <button class="choice-button round-button" data-round-type="front9">Front 9</button>
+                <button class="choice-button round-button" data-round-type="back9">Back 9</button>
+                <button class="choice-button round-button active-choice" data-round-type="full">Full round</button>
+            </div>
+        </div>
+
+        <button class="start-button" id="startRound">Play Benamor</button>
+
+    </section>
+<section class="screen settings-screen" id="settingsScreen">
+
+    <div class="screen-header">
+        <button class="back-button" id="backFromSettings" aria-label="Back">
+            <svg viewBox="0 0 24 24">
+                <path d="M15 5L8 12L15 19" />
+            </svg>
+        </button>
+
+        <h2>Player profile</h2>
+    </div>
+
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" id="playerName" placeholder="Saga">
+    </div>
+
+    <div class="form-group">
+        <label>Gender</label>
+
+        <div class="choice-group tee-choice">
+            <button class="choice-button gender-button active-choice" data-gender="female">Female</button>
+            <button class="choice-button gender-button" data-gender="male">Male</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Default tee</label>
+
+        <div class="choice-group tee-choice">
+            <button class="choice-button profile-tee-button" data-tee="White">White</button>
+            <button class="choice-button profile-tee-button" data-tee="Yellow">Yellow</button>
+            <button class="choice-button profile-tee-button active-choice" data-tee="Red">Red</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Handicap</label>
+        <input type="number" id="profileHandicap" placeholder="24.3" step="0.1">
+    </div>
+
+    <button class="start-button" id="saveProfile">
+        Save profile
+    </button>
+
+</section> 
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>
