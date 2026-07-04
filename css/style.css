@@ -266,3 +266,65 @@ textarea:focus {
     gap: 14px;
     margin: 8px 0 30px;
 }
+.floating-toast {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.96);
+
+    display: none;
+    min-width: 220px;
+    padding: 22px 24px;
+
+    border-radius: 22px;
+    background: #2E6B3F;
+    color: white;
+
+    text-align: center;
+    z-index: 999;
+
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.floating-toast.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.floating-toast strong {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.floating-toast span {
+    display: block;
+    margin-top: 6px;
+    font-size: 17px;
+    font-weight: 500;
+}
+.profile-summary {
+    margin-bottom: 34px;
+    padding: 18px;
+    border: 1px solid #333;
+    border-radius: 18px;
+    background: #111;
+    text-align: center;
+}
+
+.profile-summary span {
+    display: block;
+    color: #777;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.profile-summary strong {
+    display: block;
+    margin-top: 4px;
+    color: #2E6B3F;
+    font-size: 24px;
+    font-weight: 700;
+}

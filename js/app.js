@@ -1,12 +1,10 @@
 // ==========================================
 // ME VERSUS BENAMOR
 // APP.JS
+// UI, navigation and round flow
 // ==========================================
 
-// --------------------------
 // Screens
-// --------------------------
-
 const screens = {
     home: document.querySelector("#homeScreen"),
     play: document.querySelector("#newRoundScreen"),
@@ -14,10 +12,7 @@ const screens = {
     hole: document.querySelector("#holeScreen")
 };
 
-// --------------------------
 // Buttons
-// --------------------------
-
 const newRoundButton = document.querySelector("#newRound");
 const settingsButton = document.querySelector("#settingsButton");
 const backToHomeButton = document.querySelector("#backToHome");
@@ -25,40 +20,39 @@ const backFromSettingsButton = document.querySelector("#backFromSettings");
 const backToNewRoundButton = document.querySelector("#backToNewRound");
 const startRoundButton = document.querySelector("#startRound");
 const nextHoleButton = document.querySelector("#nextHole");
+const saveProfileButton = document.querySelector("#saveProfile");
 
-// --------------------------
 // Inputs
-// --------------------------
-
 const roundDateInput = document.querySelector("#roundDate");
 const handicapInput = document.querySelector("#handicap");
+const playerNameInput = document.querySelector("#playerName");
+const profileHandicapInput = document.querySelector("#profileHandicap");
 
-// --------------------------
+// Profile summary
+const playProfileName = document.querySelector("#playProfileName");
+const playTee = document.querySelector("#playTee");
+
 // Hole elements
-// --------------------------
-
 const holeTitle = document.querySelector("#holeTitle");
 const holePar = document.querySelector("#holePar");
 const holeHcp = document.querySelector("#holeHcp");
 const holeLength = document.querySelector("#holeLength");
 const holeNotes = document.querySelector("#holeNotes");
-
 const scoreGrid = document.querySelector(".score-grid");
 
-// --------------------------
-// Choice buttons
-// --------------------------
+// Toast
+const savedToast = document.querySelector("#savedToast");
+const savedToastTitle = document.querySelector("#savedToastTitle");
+const savedToastText = document.querySelector("#savedToastText");
 
-const teeButtons = document.querySelectorAll(".tee-button");
+// Choice buttons
 const roundButtons = document.querySelectorAll(".round-button");
 const puttButtons = document.querySelectorAll(".putt-button");
 const checkButtons = document.querySelectorAll(".check-button");
+const genderButtons = document.querySelectorAll(".gender-button");
+const profileTeeButtons = document.querySelectorAll(".profile-tee-button");
 
-// --------------------------
 // App state
-// --------------------------
-
-let selectedTee = "Red";
 let selectedRoundType = "full";
 let currentHole = 1;
 let endHole = 18;
@@ -71,8 +65,15 @@ let courseData = null;
 let holesData = [];
 let slopesData = null;
 
+let playerProfile = {
+    name: "Saga",
+    gender: "women",
+    defaultTee: "Red",
+    handicapIndex: ""
+};
+
 // --------------------------
-// Load data
+// Data loading
 // --------------------------
 
 async function loadAppData() {
@@ -83,10 +84,6 @@ async function loadAppData() {
             fetch("courses/benamor/slopes.json")
         ]);
 
-        if (!courseResponse.ok || !holesResponse.ok || !slopesResponse.ok) {
-            throw new Error("Could not load one or more course files.");
-        }
-
         courseData = await courseResponse.json();
         holesData = await holesResponse.json();
         slopesData = await slopesResponse.json();
@@ -94,11 +91,55 @@ async function loadAppData() {
         console.log("Course loaded:", courseData);
         console.log("Holes loaded:", holesData);
         console.log("Slopes loaded:", slopesData);
-
     } catch (error) {
         console.error("Error loading app data:", error);
         alert("Could not load course data.");
     }
+}
+
+// --------------------------
+// Profile
+// --------------------------
+
+function loadProfile() {
+    const savedProfile = localStorage.getItem("meVersusProfile");
+
+    if (savedProfile) {
+        playerProfile = JSON.parse(savedProfile);
+
+        // Backwards compatibility if old profile used "handicap"
+        if (playerProfile.handicap && !playerProfile.handicapIndex) {
+            playerProfile.handicapIndex = playerProfile.handicap;
+        }
+    }
+
+    updateProfileForm();
+}
+
+function saveProfile() {
+    playerProfile = {
+        name: playerNameInput.value || "Player",
+        gender: getActiveValue(genderButtons, "gender"),
+        defaultTee: getActiveValue(profileTeeButtons, "tee"),
+        handicapIndex: profileHandicapInput.value
+    };
+
+    localStorage.setItem("meVersusProfile", JSON.stringify(playerProfile));
+
+    showToast(
+        "✓ Profile saved",
+        `${playerProfile.name} · ${playerProfile.defaultTee} tee`
+    );
+
+    console.log("Profile saved:", playerProfile);
+}
+
+function updateProfileForm() {
+    playerNameInput.value = playerProfile.name || "";
+    profileHandicapInput.value = playerProfile.handicapIndex || "";
+
+    setActiveByValue(genderButtons, "gender", playerProfile.gender);
+    setActiveByValue(profileTeeButtons, "tee", playerProfile.defaultTee);
 }
 
 // --------------------------
@@ -115,6 +156,11 @@ function showScreen(screenName) {
 
 function showPlayScreen() {
     setTodayDate();
+
+    handicapInput.value = playerProfile.handicapIndex || "";
+    playProfileName.textContent = playerProfile.name || "Player";
+    playTee.textContent = `${playerProfile.defaultTee} tee`;
+
     showScreen("play");
 }
 
@@ -130,7 +176,44 @@ function setTodayDate() {
 }
 
 // --------------------------
-// Main events
+// Helpers
+// --------------------------
+
+function setActiveButton(buttons, clickedButton) {
+    buttons.forEach(button => button.classList.remove("active-choice"));
+    clickedButton.classList.add("active-choice");
+}
+
+function getActiveValue(buttons, dataName) {
+    const activeButton = Array.from(buttons).find(button =>
+        button.classList.contains("active-choice")
+    );
+
+    return activeButton.dataset[dataName];
+}
+
+function setActiveByValue(buttons, dataName, value) {
+    buttons.forEach(button => {
+        button.classList.toggle("active-choice", button.dataset[dataName] === value);
+    });
+}
+
+function getCurrentRating() {
+    const gender = playerProfile.gender;
+    const tee = playerProfile.defaultTee.toLowerCase();
+
+    return slopesData.ratings[gender][tee][selectedRoundType];
+}
+
+function getPlayedHoles() {
+    return holesData.filter(hole =>
+        hole.hole >= currentRound.startHole &&
+        hole.hole <= currentRound.endHole
+    );
+}
+
+// --------------------------
+// Events
 // --------------------------
 
 newRoundButton.addEventListener("click", showPlayScreen);
@@ -140,27 +223,24 @@ backFromSettingsButton.addEventListener("click", () => showScreen("home"));
 backToNewRoundButton.addEventListener("click", showPlayScreen);
 startRoundButton.addEventListener("click", startRound);
 nextHoleButton.addEventListener("click", goToNextHole);
-
-// --------------------------
-// Choice buttons
-// --------------------------
-
-function setActiveButton(buttons, clickedButton) {
-    buttons.forEach(button => button.classList.remove("active-choice"));
-    clickedButton.classList.add("active-choice");
-}
-
-teeButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        setActiveButton(teeButtons, button);
-        selectedTee = button.dataset.tee;
-    });
-});
+saveProfileButton.addEventListener("click", saveProfile);
 
 roundButtons.forEach(button => {
     button.addEventListener("click", () => {
         setActiveButton(roundButtons, button);
         selectedRoundType = button.dataset.roundType;
+    });
+});
+
+genderButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        setActiveButton(genderButtons, button);
+    });
+});
+
+profileTeeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        setActiveButton(profileTeeButtons, button);
     });
 });
 
@@ -182,8 +262,15 @@ checkButtons.forEach(button => {
 // --------------------------
 
 function startRound() {
-    if (!holesData || holesData.length === 0) {
+    if (!holesData.length || !slopesData) {
         alert("Course data is still loading. Try again in a moment.");
+        return;
+    }
+
+    const handicapIndex = Number(handicapInput.value);
+
+    if (Number.isNaN(handicapIndex)) {
+        alert("Please enter your handicap.");
         return;
     }
 
@@ -198,14 +285,33 @@ function startRound() {
         endHole = 18;
     }
 
+    const rating = getCurrentRating();
+    const playedHoles = holesData.filter(hole =>
+        hole.hole >= currentHole && hole.hole <= endHole
+    );
+
+    const roundEngineData = Engine.createRound(
+        handicapIndex,
+        rating,
+        playedHoles
+    );
+
     currentRound = {
-        course: "Benamor Golf",
+        course: courseData.name,
+        player: playerProfile.name,
+        gender: playerProfile.gender,
+
         date: roundDateInput.value,
-        handicap: Number(handicapInput.value),
-        tee: selectedTee,
+
+        handicapIndex: handicapIndex,
+        playingHandicap: roundEngineData.playingHandicap,
+        strokesPerHole: roundEngineData.strokesPerHole,
+
+        tee: playerProfile.defaultTee,
         roundType: selectedRoundType,
         startHole: currentHole,
         endHole: endHole,
+
         holes: []
     };
 
@@ -223,7 +329,7 @@ function loadHole(holeNumber) {
         return;
     }
 
-    const teeKey = selectedTee.toLowerCase();
+    const teeKey = playerProfile.defaultTee.toLowerCase();
     const length = holeData.length[teeKey];
 
     holeTitle.textContent = `Hole ${holeData.hole}`;
@@ -237,15 +343,45 @@ function loadHole(holeNumber) {
     nextHoleButton.textContent =
         currentHole === endHole ? "Finish round" : "Next hole";
 }
+
+function goToNextHole() {
+    if (selectedScore === null) {
+        alert("Du måste registrera score innan du kan gå vidare.");
+        return;
+    }
+
+    const holeResult = saveCurrentHole();
+
+    showSavedToast(holeResult);
+}
+
 function saveCurrentHole() {
+    const holeData = holesData.find(hole => hole.hole === currentHole);
+
+    const strokesReceived = currentRound.strokesPerHole[currentHole];
+
+    const stableford = Engine.calculateStableford(
+        selectedScore,
+        holeData.par,
+        strokesReceived
+    );
+
     const holeResult = {
         hole: currentHole,
+        par: holeData.par,
+        strokeIndex: holeData.strokeIndex,
+
         score: selectedScore,
         putts: selectedPutts,
+
+        strokesReceived: strokesReceived,
+        stableford: stableford,
+
         fairway: document.querySelector('[data-check="fairway"]').classList.contains("active-choice"),
         green: document.querySelector('[data-check="green"]').classList.contains("active-choice"),
         bunker: document.querySelector('[data-check="bunker"]').classList.contains("active-choice"),
         penalty: document.querySelector('[data-check="penalty"]').classList.contains("active-choice"),
+
         notes: holeNotes.value
     };
 
@@ -253,17 +389,25 @@ function saveCurrentHole() {
 
     console.log("Hole saved:", holeResult);
     console.log("Current round:", currentRound);
-    }
-function goToNextHole() {
-    saveCurrentHole();
 
-    if (currentHole < endHole) {
-        currentHole++;
-        loadHole(currentHole);
-    } else {
-        console.log("Round complete:", currentRound);
-        showScreen("home");
-    }
+    return holeResult;
+}
+
+function showSavedToast(holeResult) {
+    showToast(
+        "✓ Saved",
+        `Hole ${holeResult.hole} · Score ${holeResult.score} · ${holeResult.stableford} pts`
+    );
+
+    setTimeout(() => {
+        if (currentHole < endHole) {
+            currentHole++;
+            loadHole(currentHole);
+        } else {
+            console.log("Round complete:", currentRound);
+            showScreen("home");
+        }
+    }, 2000);
 }
 
 // --------------------------
@@ -309,7 +453,23 @@ function buildScoreButtons(par) {
 }
 
 // --------------------------
+// Toast
+// --------------------------
+
+function showToast(title, text) {
+    savedToastTitle.textContent = title;
+    savedToastText.textContent = text;
+
+    savedToast.classList.add("show");
+
+    setTimeout(() => {
+        savedToast.classList.remove("show");
+    }, 1800);
+}
+
+// --------------------------
 // Init
 // --------------------------
 
+loadProfile();
 loadAppData();

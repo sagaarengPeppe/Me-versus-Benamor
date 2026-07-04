@@ -10,147 +10,147 @@
 </head>
 
 <body>
-    <main class="app">
+<main class="app">
 
-        <section class="screen home-screen active" id="homeScreen">
-            <h1><strong>Me</strong> versus</h1>
+    <section class="screen home-screen active" id="homeScreen">
+        <h1><strong>Me</strong> versus</h1>
 
-            <img src="images/benamor-logo.png" alt="Benamor Golf" class="logo-image">
+        <img src="images/benamor-logo.png" alt="Benamor Golf" class="logo-image">
 
-            <p class="tagline">
-                Track. Learn.<br>
-                Beat the course.
-            </p>
+        <p class="tagline">Track. Learn.<br>Beat the course.</p>
 
-            <div class="scores">
-                <div class="score-row">
-                    <span>Last score</span>
-                    <strong id="lastScore">-</strong>
-                </div>
-
-                <div class="score-row">
-                    <span>Best score</span>
-                    <strong id="bestScore">-</strong>
-                </div>
+        <div class="scores">
+            <div class="score-row">
+                <span>Last score</span>
+                <strong id="lastScore">-</strong>
             </div>
-
-            <button class="primary-link" id="newRound">New round</button>
-            <button class="secondary-link" id="settingsButton">Settings</button>
-        </section>
-
-        <section class="screen play-screen" id="newRoundScreen">
-            <button class="back-button" id="backToHome">‹</button>
-
-            <div class="form-group">
-                <label>Date</label>
-                <input type="text" id="roundDate" readonly>
+            <div class="score-row">
+                <span>Best score</span>
+                <strong id="bestScore">-</strong>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label>Handicap</label>
-                <input type="number" id="handicap" placeholder="24.3" step="0.1">
+        <button class="primary-link" id="newRound">New round</button>
+        <button class="secondary-link" id="settingsButton">Settings</button>
+    </section>
+
+
+    <section class="screen play-screen" id="newRoundScreen">
+        <button class="back-button" id="backToHome">‹</button>
+
+        <div class="profile-summary">
+            <span id="playProfileName">Player</span>
+            <strong id="playTee">Red tee</strong>
+        </div>
+
+        <div class="form-group">
+            <label>Date</label>
+            <input type="text" id="roundDate" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Handicap</label>
+            <input type="number" id="handicap" placeholder="24.3" step="0.1">
+        </div>
+
+        <div class="form-group">
+            <label>Round type</label>
+            <div class="button-stack">
+                <button class="choice-button round-button" data-round-type="front9">Front 9</button>
+                <button class="choice-button round-button" data-round-type="back9">Back 9</button>
+                <button class="choice-button round-button active-choice" data-round-type="full">Full round</button>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label>Tee</label>
-                <div class="button-row">
-                    <button class="choice-button tee-button" data-tee="White">White</button>
-                    <button class="choice-button tee-button" data-tee="Yellow">Yellow</button>
-                    <button class="choice-button tee-button active-choice" data-tee="Red">Red</button>
-                </div>
+        <button class="play-button" id="startRound">Play Benamor</button>
+    </section>
+
+
+    <section class="screen settings-screen" id="settingsScreen">
+        <button class="back-button" id="backFromSettings">‹</button>
+
+        <h2>Player profile</h2>
+
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="playerName" placeholder="Saga">
+        </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <div class="button-row">
+                <button class="choice-button gender-button active-choice" data-gender="women">Women</button>
+                <button class="choice-button gender-button" data-gender="men">Men</button>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label>Round type</label>
-                <div class="button-stack">
-                    <button class="choice-button round-button" data-round-type="front9">Front 9</button>
-                    <button class="choice-button round-button" data-round-type="back9">Back 9</button>
-                    <button class="choice-button round-button active-choice" data-round-type="full">Full round</button>
-                </div>
+        <div class="form-group">
+            <label>Default tee</label>
+            <div class="button-row">
+                <button class="choice-button profile-tee-button" data-tee="White">White</button>
+                <button class="choice-button profile-tee-button" data-tee="Yellow">Yellow</button>
+                <button class="choice-button profile-tee-button active-choice" data-tee="Red">Red</button>
             </div>
+        </div>
 
-            <button class="play-button" id="startRound">Play Benamor</button>
-        </section>
+        <div class="form-group">
+            <label>Handicap</label>
+            <input type="number" id="profileHandicap" placeholder="24.3" step="0.1">
+        </div>
 
-        <section class="screen settings-screen" id="settingsScreen">
-            <button class="back-button" id="backFromSettings">‹</button>
+        <button class="play-button" id="saveProfile">Save profile</button>
+    </section>
 
-            <h2>Player profile</h2>
 
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" id="playerName" placeholder="Saga">
+    <section class="screen hole-screen" id="holeScreen">
+        <button class="back-button" id="backToNewRound">‹</button>
+
+        <h2 id="holeTitle">Hole 1</h2>
+
+        <div class="hole-info">
+            <span id="holePar">Par 4</span>
+            <span id="holeHcp">HCP 13</span>
+            <span id="holeLength">256 m</span>
+        </div>
+
+        <div class="form-group">
+            <label>Score</label>
+            <div class="score-grid"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Putts</label>
+            <div class="putt-grid">
+                <button class="choice-button putt-button" data-putts="0">0</button>
+                <button class="choice-button putt-button" data-putts="1">1</button>
+                <button class="choice-button putt-button" data-putts="2">2</button>
+                <button class="choice-button putt-button" data-putts="3">3</button>
+                <button class="choice-button putt-button" data-putts="4">4</button>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label>Gender</label>
-                <div class="button-row">
-                    <button class="choice-button gender-button active-choice" data-gender="female">Female</button>
-                    <button class="choice-button gender-button" data-gender="male">Male</button>
-                </div>
-            </div>
+        <div class="check-grid">
+            <button class="check-button" data-check="fairway">Fairway</button>
+            <button class="check-button" data-check="green">Green</button>
+            <button class="check-button" data-check="bunker">Bunker</button>
+            <button class="check-button" data-check="penalty">Penalty</button>
+        </div>
 
-            <div class="form-group">
-                <label>Default tee</label>
-                <div class="button-row">
-                    <button class="choice-button profile-tee-button" data-tee="White">White</button>
-                    <button class="choice-button profile-tee-button" data-tee="Yellow">Yellow</button>
-                    <button class="choice-button profile-tee-button active-choice" data-tee="Red">Red</button>
-                </div>
-            </div>
+        <div class="form-group">
+            <label>Notes</label>
+            <textarea id="holeNotes" placeholder="What happened on this hole?"></textarea>
+        </div>
 
-            <div class="form-group">
-                <label>Handicap</label>
-                <input type="number" id="profileHandicap" placeholder="24.3" step="0.1">
-            </div>
+        <button class="play-button" id="nextHole">Next hole</button>
+    </section>
 
-            <button class="play-button" id="saveProfile">Save profile</button>
-        </section>
+    <div class="floating-toast" id="savedToast">
+        <strong id="savedToastTitle">✓ Saved</strong>
+        <span id="savedToastText">Hole 1 · Score 5</span>
+    </div>
 
-        <section class="screen hole-screen" id="holeScreen">
-            <button class="back-button" id="backToNewRound">‹</button>
-
-            <h2 id="holeTitle">Hole 1</h2>
-
-            <div class="hole-info">
-                <span id="holePar">Par 4</span>
-                <span id="holeHcp">HCP 13</span>
-                <span id="holeLength">256 m</span>
-            </div>
-
-            <div class="form-group">
-                <label>Score</label>
-                <div class="score-grid" id="scoreGrid"></div>
-            </div>
-
-            <div class="form-group">
-                <label>Putts</label>
-                <div class="putt-grid">
-                    <button class="choice-button putt-button" data-putts="0">0</button>
-                    <button class="choice-button putt-button" data-putts="1">1</button>
-                    <button class="choice-button putt-button" data-putts="2">2</button>
-                    <button class="choice-button putt-button" data-putts="3">3</button>
-                    <button class="choice-button putt-button" data-putts="4">4</button>
-                </div>
-            </div>
-
-            <div class="check-grid">
-                <button class="check-button" data-check="fairway">Fairway</button>
-                <button class="check-button" data-check="green">Green</button>
-                <button class="check-button" data-check="bunker">Bunker</button>
-                <button class="check-button" data-check="penalty">Penalty</button>
-            </div>
-
-            <div class="form-group">
-                <label>Notes</label>
-                <textarea id="holeNotes" placeholder="What happened on this hole?"></textarea>
-            </div>
-
-            <button class="play-button" id="nextHole">Next hole</button>
-        </section>
-
-    </main>
-
-    <script src="js/app.js"></script>
+</main>
+<script src="js/engine.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
