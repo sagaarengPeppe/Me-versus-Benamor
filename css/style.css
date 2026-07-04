@@ -546,3 +546,41 @@ textarea:focus {
     font-size: 18px;
     margin-top: 22px;
 }
+.hole-screen {
+    padding-top: 18px;
+}
+
+.hole-screen .back-button {
+    margin-bottom: 22px;
+}
+
+.hole-screen h2 {
+    margin-bottom: 18px;
+}
+
+.hole-info,
+.live-score-bar {
+    margin-bottom: 20px;
+}
+
+.hole-screen .form-group {
+    margin-bottom: 22px;
+}
+
+.score-grid {
+    gap: 10px;
+}
+
+.choice-button,
+.check-button {
+    min-height: 52px;
+}
+
+.putt-grid .choice-button {
+    min-height: 52px;
+}
+
+.hole-screen .play-button {
+    margin-top: 24px;
+    padding: 22px;
+}
