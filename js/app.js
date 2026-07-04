@@ -36,7 +36,6 @@ const holeTitle = document.querySelector("#holeTitle");
 const holePar = document.querySelector("#holePar");
 const holeHcp = document.querySelector("#holeHcp");
 const holeLength = document.querySelector("#holeLength");
-const holeNotes = document.querySelector("#holeNotes");
 const scoreGrid = document.querySelector(".score-grid");
 
 const liveHole = document.querySelector("#liveHole");
@@ -394,7 +393,6 @@ function saveCurrentHole() {
         green: document.querySelector('[data-check="green"]').classList.contains("active-choice"),
         bunker: document.querySelector('[data-check="bunker"]').classList.contains("active-choice"),
         penalty: document.querySelector('[data-check="penalty"]').classList.contains("active-choice"),
-        notes: holeNotes.value
     };
 
     currentRound.holes.push(holeResult);
@@ -555,7 +553,6 @@ function clearHoleInputs() {
     puttButtons.forEach(button => button.classList.remove("active-choice"));
     checkButtons.forEach(button => button.classList.remove("active-choice"));
 
-    holeNotes.value = "";
 }
 
 function buildScoreButtons(par) {
