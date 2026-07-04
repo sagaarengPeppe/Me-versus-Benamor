@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Me versus Benamor</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -32,6 +32,7 @@
 
         <button class="primary-link" id="newRound">New round</button>
         <button class="secondary-link" id="settingsButton">Settings</button>
+        <button class="secondary-link" id="statsButton">Statistics</button>
     </section>
 
 
@@ -107,6 +108,12 @@
 
         <h2 id="holeTitle">Hole 1</h2>
 
+        <div class="live-score-bar">
+            <span id="liveHole">Hole 1 / 18</span>
+            <span id="liveGross">Score 0</span>
+            <span id="liveStableford">0 pts</span>
+        </div>
+
         <div class="hole-info">
             <span id="holePar">Par 4</span>
             <span id="holeHcp">HCP 13</span>
@@ -144,12 +151,55 @@
         <button class="play-button" id="nextHole">Next hole</button>
     </section>
 
+
+    <section class="screen stats-screen" id="statsScreen">
+    <button class="back-button" id="backFromStats">‹</button>
+
+    <h2>Round Review</h2>
+
+    <div class="form-group">
+        <label>Course</label>
+        <select id="statsCourseSelect">
+            <option value="benamor">Benamor Golf</option>
+        </select>
+    </div>
+
+    <div class="stats-card">
+        <label>FHandicap Submission</label>
+        <strong id="statsMingolf">-</strong>
+    </div>
+
+    <div class="stats-card">
+        <label>Best round</label>
+        <strong id="statsBestScore">-</strong>
+    </div>
+
+    <div class="stats-card">
+        <label>Strongest Hole</label>
+        <strong id="statsGoodHole">-</strong>
+    </div>
+
+    <div class="stats-card">
+        <label>Toughest Hole</label>
+        <strong id="statsBadHole">-</strong>
+    </div>
+
+    <div class="stats-card">
+        <label>My Eclectic</label>
+        <div class="eclectic-grid" id="statsEclectic"></div>
+    </div>
+
+    <button class="play-button" id="statsHomeButton">Back home</button>
+</section>
+
+
     <div class="floating-toast" id="savedToast">
         <strong id="savedToastTitle">✓ Saved</strong>
         <span id="savedToastText">Hole 1 · Score 5</span>
     </div>
 
 </main>
+
 <script src="js/engine.js"></script>
 <script src="js/app.js"></script>
 </body>

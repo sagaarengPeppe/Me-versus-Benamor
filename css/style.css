@@ -1,13 +1,47 @@
+/* =========================================
+   ME VERSUS BENAMOR
+   STYLE.CSS
+========================================= */
+
+:root {
+    --color-bg: #000000;
+    --color-surface: #111111;
+    --color-surface-border: #333333;
+    --color-text: #ffffff;
+    --color-muted: #777777;
+    --color-accent: #2E6B3F;
+
+    --font-heading: "Manrope", sans-serif;
+    --font-body: "Inter", sans-serif;
+
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+
+    --radius-small: 4px;
+    --radius-medium: 14px;
+    --radius-large: 18px;
+    --radius-pill: 999px;
+
+    --screen-width: 390px;
+}
+
+/* RESET */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* BASE */
+
 body {
-    background: #000;
-    color: #fff;
-    font-family: "Jost", sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-weight: var(--weight-regular);
 }
 
 .app {
@@ -19,13 +53,37 @@ body {
 .screen {
     display: none;
     width: 100%;
-    max-width: 390px;
+    max-width: var(--screen-width);
     min-height: 100vh;
     padding: 34px 30px 44px;
 }
 
 .screen.active {
     display: block;
+}
+
+/* TYPOGRAPHY */
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 70px;
+}
+
+h1 strong {
+    font-weight: var(--weight-bold);
+}
+
+h2 {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 34px;
 }
 
 /* HOME */
@@ -35,29 +93,22 @@ body {
     text-align: center;
 }
 
-h1 {
-    font-size: 42px;
-    font-weight: 300;
-    margin-bottom: 70px;
-}
-
-h1 strong {
-    font-weight: 700;
-}
-
 .logo-image {
     width: 135px;
     margin-bottom: 22px;
 }
 
 .tagline {
-    font-size: 17px;
-    font-weight: 500;
+    margin-bottom: 70px;
+
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: var(--weight-semibold);
     line-height: 1.6;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #2E6B3F;
-    margin-bottom: 70px;
+
+    color: var(--color-accent);
 }
 
 .scores {
@@ -74,54 +125,70 @@ h1 strong {
 }
 
 .score-row span {
+    font-family: var(--font-body);
     font-size: 30px;
-    font-weight: 300;
+    font-weight: var(--weight-regular);
 }
 
 .score-row strong {
     height: 32px;
-    background: #fff;
-    color: #000;
-    border-radius: 4px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-radius: var(--radius-small);
+
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: var(--weight-medium);
 }
 
-/* GENERAL BUTTONS */
+/* BUTTONS */
 
 button {
-    font-family: "Jost", sans-serif;
+    font-family: var(--font-heading);
+    font-weight: var(--weight-semibold);
     cursor: pointer;
 }
 
 .primary-link {
     display: block;
     margin: 0 auto;
+
     background: transparent;
     border: none;
-    color: white;
+
+    color: var(--color-text);
+
     font-size: 34px;
-    font-weight: 500;
 }
 
 .secondary-link {
     display: block;
     margin: 22px auto 0;
+
     background: transparent;
     border: none;
-    color: #777;
+
+    color: var(--color-muted);
+
     font-size: 18px;
-    font-weight: 300;
+    font-weight: var(--weight-regular);
 }
 
 .back-button {
+    margin-bottom: 48px;
+
     background: transparent;
     border: none;
-    color: white;
+
+    color: var(--color-text);
+
     font-size: 48px;
     line-height: 1;
-    margin-bottom: 48px;
 }
 
 /* FORMS */
@@ -134,41 +201,49 @@ button {
 .form-group label {
     display: block;
     margin-bottom: 10px;
-    font-size: 14px;
-    font-weight: 700;
+
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: var(--weight-medium);
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #2E6B3F;
+
+    color: var(--color-accent);
 }
 
 input,
 textarea {
     width: 100%;
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 14px;
-    color: white;
-    font-family: "Jost", sans-serif;
-    font-size: 24px;
-    font-weight: 300;
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-surface-border);
+    border-radius: var(--radius-medium);
+
+    color: var(--color-text);
+
+    font-family: var(--font-body);
+    font-weight: var(--weight-regular);
 }
 
 input {
     height: 58px;
     padding: 0 20px;
+
+    font-size: 24px;
 }
 
 textarea {
     min-height: 92px;
     padding: 16px 18px;
     resize: vertical;
+
     font-size: 18px;
 }
 
 input:focus,
 textarea:focus {
     outline: none;
-    border-color: #2E6B3F;
+    border-color: var(--color-accent);
 }
 
 #handicap,
@@ -192,60 +267,140 @@ textarea:focus {
 .choice-button,
 .check-button {
     min-height: 58px;
-    border: 1px solid #333;
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-surface-border);
     border-radius: 16px;
-    background: #111;
-    color: white;
+
+    color: var(--color-text);
+
+    font-family: var(--font-heading);
     font-size: 21px;
-    font-weight: 500;
+    font-weight: var(--weight-semibold);
 }
 
 .choice-button.active-choice,
 .check-button.active-choice {
-    background: #2E6B3F;
-    border-color: #2E6B3F;
-    color: white;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-text);
 }
 
 .play-button {
     width: 100%;
     margin-top: 34px;
     padding: 22px;
+
     border: none;
-    border-radius: 999px;
-    background: #2E6B3F;
-    color: white;
+    border-radius: var(--radius-pill);
+
+    background: var(--color-accent);
+    color: var(--color-text);
+
+    font-family: var(--font-heading);
     font-size: 25px;
-    font-weight: 700;
+    font-weight: var(--weight-semibold);
+}
+
+/* PROFILE SUMMARY */
+
+.profile-summary {
+    margin-bottom: 34px;
+    padding: 18px;
+
+    border: 1px solid var(--color-surface-border);
+    border-radius: var(--radius-large);
+    background: var(--color-surface);
+
+    text-align: center;
+}
+
+.profile-summary span {
+    display: block;
+
+    color: var(--color-muted);
+
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: var(--weight-regular);
+}
+
+.profile-summary strong {
+    display: block;
+    margin-top: 4px;
+
+    color: var(--color-accent);
+
+    font-family: var(--font-body);
+    font-size: 24px;
+    font-weight: var(--weight-medium);
 }
 
 /* SETTINGS */
 
-.settings-screen h2,
-.hole-screen h2 {
+.settings-screen h2 {
     text-align: center;
     font-size: 34px;
-    font-weight: 700;
     margin-bottom: 34px;
 }
 
 /* HOLE SCREEN */
 
+.hole-screen h2 {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.live-score-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+
+    margin-bottom: 24px;
+}
+
+.live-score-bar span {
+    padding: 10px 6px;
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-surface-border);
+    border-radius: var(--radius-medium);
+
+    text-align: center;
+
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: var(--weight-medium);
+
+    color: var(--color-text);
+}
+
+#liveStableford {
+    color: var(--color-accent);
+    font-weight: var(--weight-medium);
+}
+
 .hole-info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+
     margin-bottom: 34px;
 }
 
 .hole-info span {
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 14px;
     padding: 12px 6px;
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-surface-border);
+    border-radius: var(--radius-medium);
+
     text-align: center;
+
+    font-family: var(--font-body);
     font-size: 16px;
-    font-weight: 500;
+    font-weight: var(--weight-medium);
 }
 
 .score-grid {
@@ -264,8 +419,12 @@ textarea:focus {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
+
     margin: 8px 0 30px;
 }
+
+/* TOAST */
+
 .floating-toast {
     position: fixed;
     left: 50%;
@@ -277,8 +436,8 @@ textarea:focus {
     padding: 22px 24px;
 
     border-radius: 22px;
-    background: #2E6B3F;
-    color: white;
+    background: var(--color-accent);
+    color: var(--color-text);
 
     text-align: center;
     z-index: 999;
@@ -295,36 +454,95 @@ textarea:focus {
 
 .floating-toast strong {
     display: block;
+
+    font-family: var(--font-heading);
     font-size: 28px;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
 }
 
 .floating-toast span {
     display: block;
     margin-top: 6px;
+
+    font-family: var(--font-body);
     font-size: 17px;
-    font-weight: 500;
+    font-weight: var(--weight-medium);
 }
-.profile-summary {
-    margin-bottom: 34px;
+.stats-card {
+    margin-bottom: 24px;
     padding: 18px;
-    border: 1px solid #333;
-    border-radius: 18px;
-    background: #111;
+    background: var(--color-surface);
+    border: 1px solid var(--color-surface-border);
+    border-radius: var(--radius-large);
+}
+
+.stats-card label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-accent);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: var(--weight-medium);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.stats-card strong {
+    font-family: var(--font-body);
+    font-size: 26px;
+    font-weight: var(--weight-medium);
+}
+
+.eclectic-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.eclectic-grid span {
+    padding: 10px 4px;
+    background: #000;
+    border-radius: 10px;
     text-align: center;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: var(--weight-medium);
+}
+/* STATS SCREEN REFINEMENT */
+
+.stats-screen .form-group {
+    display: none;
 }
 
-.profile-summary span {
-    display: block;
-    color: #777;
-    font-size: 16px;
-    font-weight: 300;
+.stats-card {
+    margin-bottom: 14px;
+    padding: 14px;
 }
 
-.profile-summary strong {
+.stats-card label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+}
+
+.stats-card strong {
+    font-size: 14px;
+    line-height: 1.45;
+    font-weight: var(--weight-medium);
+}
+
+.stats-screen .play-button {
+    width: auto;
     display: block;
-    margin-top: 4px;
-    color: #2E6B3F;
-    font-size: 24px;
-    font-weight: 700;
+    margin: 18px auto 0;
+    padding: 10px 22px;
+    font-size: 15px;
+}
+
+/* SMALLER PLAY BUTTON ON NEW ROUND */
+
+.play-screen .play-button {
+    padding: 15px 22px;
+    font-size: 18px;
+    margin-top: 22px;
 }
