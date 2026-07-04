@@ -541,11 +541,6 @@ textarea:focus {
 
 /* SMALLER PLAY BUTTON ON NEW ROUND */
 
-.play-screen .play-button {
-    padding: 15px 22px;
-    font-size: 18px;
-    margin-top: 22px;
-}
 .hole-screen {
     padding-top: 18px;
 }
