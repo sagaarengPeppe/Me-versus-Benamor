@@ -37,6 +37,8 @@ const holeTitle = document.querySelector("#holeTitle");
 const holePar = document.querySelector("#holePar");
 const holeHcp = document.querySelector("#holeHcp");
 const holeLength = document.querySelector("#holeLength");
+const holeNoteTitle = document.querySelector("#holeNoteTitle");
+const holeNoteText = document.querySelector("#holeNoteText");
 const scoreGrid = document.querySelector(".score-grid");
 
 const liveHole = document.querySelector("#liveHole");
@@ -72,36 +74,42 @@ let currentRound = null;
 let courseData = null;
 let holesData = [];
 let slopesData = null;
+let notesData = {};
 
 let playerProfile = {
     name: "Saga",
     gender: "women",
     defaultTee: "Red",
     handicapIndex: ""
+    
 };
 
 async function loadAppData() {
     try {
-        const [courseResponse, holesResponse, slopesResponse] = await Promise.all([
+        const [courseResponse, holesResponse, slopesResponse, notesResponse] = await Promise.all([
             fetch("courses/benamor/course.json"),
             fetch("courses/benamor/holes.json"),
-            fetch("courses/benamor/slopes.json")
+            fetch("courses/benamor/slopes.json"),
+            fetch("courses/benamor/notes.json")
         ]);
 
         courseData = await courseResponse.json();
         holesData = await holesResponse.json();
         slopesData = await slopesResponse.json();
+        notesData = await notesResponse.json();
 
         console.log("Course loaded:", courseData);
         console.log("Holes loaded:", holesData);
         console.log("Slopes loaded:", slopesData);
+        console.log("Notes loaded:", notesData);
+
         updateHomeStats();
+
     } catch (error) {
         console.error("Error loading app data:", error);
         alert("Could not load course data.");
     }
 }
-
 function loadProfile() {
     const savedProfile = localStorage.getItem("meVersusProfile");
 
@@ -405,9 +413,19 @@ function loadHole(holeNumber) {
     const length = holeData.length[teeKey];
 
     holeTitle.textContent = `Hole ${holeData.hole}`;
-    holePar.textContent = `Par ${holeData.par}`;
-    holeHcp.textContent = `HCP ${holeData.strokeIndex}`;
-    holeLength.textContent = length ? `${length} m` : "- m";
+holePar.textContent = `Par ${holeData.par}`;
+holeHcp.textContent = `HCP ${holeData.strokeIndex}`;
+holeLength.textContent = length ? `${length} m` : "- m";
+
+const note = notesData[String(holeData.hole)];
+
+if (note) {
+    holeNoteTitle.textContent = note.title || "";
+    holeNoteText.textContent = note.text || "";
+} else {
+    holeNoteTitle.textContent = "";
+    holeNoteText.textContent = "";
+}
 
     clearHoleInputs();
     buildScoreButtons(holeData.par);

@@ -576,3 +576,115 @@ select:focus {
     font-size: 15px;
     font-weight: var(--weight-semibold);
 }
+.hole-note-card {
+    margin-bottom: 22px;
+    padding: 16px 18px;
+
+    background: var(--color-surface-soft);
+    border: 1px solid var(--color-surface-border);
+    border-radius: var(--radius-large);
+
+    text-align: left;
+}
+
+.hole-note-card strong {
+    display: block;
+    margin-bottom: 8px;
+
+    color: var(--color-text);
+
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: var(--weight-bold);
+}
+
+.hole-note-card p {
+    color: var(--color-text);
+
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+}
+.caddie-label {
+    display: block;
+    margin-bottom: 8px;
+
+    color: var(--color-accent);
+
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: var(--weight-medium);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+/* COMPACT HOLE SCREEN WITH CADDIE CARD */
+
+.hole-screen {
+    padding-top: 14px;
+    padding-bottom: 28px;
+}
+
+.hole-screen .back-button {
+    margin-bottom: 10px;
+}
+
+.hole-screen h2 {
+    font-size: 30px;
+    margin-bottom: 14px;
+}
+
+.live-score-bar {
+    margin-bottom: 14px;
+}
+
+.hole-info {
+    margin-bottom: 14px;
+}
+
+.hole-note-card {
+    margin-bottom: 16px;
+    padding: 13px 14px;
+}
+
+.caddie-label {
+    margin-bottom: 5px;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.hole-note-card strong {
+    margin-bottom: 6px;
+    font-size: 15px;
+}
+
+.hole-note-card p {
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.hole-screen .form-group {
+    margin-bottom: 16px;
+}
+
+.choice-button,
+.check-button {
+    min-height: 44px;
+    padding: 8px 14px;
+}
+
+.score-grid {
+    gap: 8px;
+}
+
+.putt-grid {
+    gap: 8px;
+}
+
+.check-grid {
+    gap: 10px;
+    margin: 6px 0 22px;
+}
+
+.hole-screen .play-button {
+    margin-top: 18px;
+}
