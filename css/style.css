@@ -562,3 +562,16 @@ select:focus {
     font-size: 17px;
     font-weight: var(--weight-medium);
 }
+.danger-link {
+    display: block;
+    margin: 18px auto 0;
+
+    background: transparent;
+    border: none;
+
+    color: var(--color-muted);
+
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: var(--weight-semibold);
+}

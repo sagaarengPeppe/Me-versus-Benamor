@@ -52,7 +52,8 @@ const statsBestScore = document.querySelector("#statsBestScore");
 const statsGoodHole = document.querySelector("#statsGoodHole");
 const statsBadHole = document.querySelector("#statsBadHole");
 const statsEclectic = document.querySelector("#statsEclectic");
-
+const lastScore = document.querySelector("#lastScore");
+const bestScore = document.querySelector("#bestScore");
 const roundsPlayed = document.querySelector("#roundsPlayed");
 
 const roundButtons = document.querySelectorAll(".round-button");
@@ -60,6 +61,7 @@ const puttButtons = document.querySelectorAll(".putt-button");
 const checkButtons = document.querySelectorAll(".check-button");
 const genderButtons = document.querySelectorAll(".gender-button");
 const profileTeeButtons = document.querySelectorAll(".profile-tee-button");
+const resetDataButton = document.querySelector("#resetDataButton");
 
 let selectedRoundType = "full";
 let currentHole = 1;
@@ -93,6 +95,7 @@ async function loadAppData() {
         console.log("Course loaded:", courseData);
         console.log("Holes loaded:", holesData);
         console.log("Slopes loaded:", slopesData);
+        updateHomeStats();
     } catch (error) {
         console.error("Error loading app data:", error);
         alert("Could not load course data.");
@@ -125,6 +128,27 @@ function saveProfile() {
     showToast("✓ Profile saved", `${playerProfile.name} · ${playerProfile.defaultTee} tee`);
 }
 
+function resetTestData() {
+    const confirmReset = confirm(
+        "Are you sure? This will delete all saved rounds, but keep your profile."
+    );
+
+    if (!confirmReset) {
+        return;
+    }
+
+    Storage.save(Storage.keys.rounds, []);
+
+    updateHomeStats();
+    renderStats();
+
+    showToast(
+        "✓ Data reset",
+        "All saved rounds deleted"
+    );
+
+    console.log("Rounds reset:", Storage.getRounds());
+}
 function updateProfileForm() {
     playerNameInput.value = playerProfile.name || "";
     profileHandicapInput.value = playerProfile.handicapIndex || "";
@@ -140,16 +164,43 @@ function showScreen(screenName) {
 
 function showPlayScreen() {
     setTodayDate();
-    handicapInput.value = playerProfile.handicapIndex || "";
-    const heroCard = Hero.getHeroCard(
-    playerProfile,
-    Storage.getRounds()
-);
 
-heroTitle.textContent = heroCard.title;
-heroSubtitle.textContent = heroCard.subtitle;
-heroDetail.textContent = heroCard.detail;
+    handicapInput.value = playerProfile.handicapIndex || "";
+
+    const heroCard = Hero.getHeroCard(
+        playerProfile,
+        Storage.getRounds()
+    );
+
+    heroTitle.textContent = heroCard.title;
+    heroSubtitle.textContent = heroCard.subtitle;
+    heroDetail.textContent = heroCard.detail;
+
     showScreen("play");
+}
+
+function updateHomeStats() {
+    const rounds = Storage.getRounds();
+
+    roundsPlayed.textContent = rounds.length;
+
+    if (rounds.length === 0) {
+        lastScore.textContent = "-";
+        bestScore.textContent = "-";
+        return;
+    }
+
+    const stablefordTotals = rounds.map(round => {
+        return round.holes.reduce((sum, hole) => {
+            return sum + (hole.stableford || 0);
+        }, 0);
+    });
+
+    const lastTotal = stablefordTotals[stablefordTotals.length - 1];
+    const bestTotal = Math.max(...stablefordTotals);
+
+    lastScore.textContent = `${lastTotal} pts`;
+    bestScore.textContent = `${bestTotal} pts`;
 }
 
 function setTodayDate() {
@@ -223,6 +274,7 @@ backToNewRoundButton.addEventListener("click", showPlayScreen);
 startRoundButton.addEventListener("click", startRound);
 nextHoleButton.addEventListener("click", goToNextHole);
 saveProfileButton.addEventListener("click", saveProfile);
+resetDataButton.addEventListener("click", resetTestData);
 
 roundButtons.forEach(button => {
     button.addEventListener("click", () => {
@@ -426,21 +478,32 @@ function updateRoundTotals(holeResult) {
 }
 
 function showSavedToast(holeResult) {
+
     showToast(
         "✓ Saved",
         `Hole ${holeResult.hole} · Score ${holeResult.score} · ${holeResult.stableford} pts`
     );
 
     setTimeout(() => {
+
         if (currentHole < currentRound.setup.endHole) {
+
             currentHole++;
             loadHole(currentHole);
+
         } else {
-            saveRound(currentRound);
-            renderStats(currentRound);
-            showScreen("stats");
+
+            Storage.saveRound(currentRound);
+            updateHomeStats();
+            renderStats();
+
+            console.log("Round complete:", currentRound);
+            showScreen("home");
+
         }
-    }, 2000);
+
+    }, 1200);
+
 }
 
 function updateDashboard() {
@@ -452,7 +515,7 @@ function updateDashboard() {
 }
 
 function renderStats(latestRound = null) {
-    const rounds = getSavedRounds();
+    const rounds = Storage.getRounds();
 
     const roundsToUse = latestRound ? rounds.concat([latestRound]) : rounds;
 
