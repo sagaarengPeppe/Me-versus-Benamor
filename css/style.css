@@ -579,3 +579,11 @@ textarea:focus {
     margin-top: 24px;
     padding: 22px;
 }
+.play-button {
+    width: auto;
+    display: block;
+    margin: 24px auto 0;
+    padding: 12px 28px;
+    font-size: 16px;
+    border-radius: var(--radius-pill);
+}
