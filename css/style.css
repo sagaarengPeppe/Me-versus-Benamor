@@ -539,8 +539,6 @@ textarea:focus {
     font-size: 15px;
 }
 
-/* SMALLER PLAY BUTTON ON NEW ROUND */
-
 .hole-screen {
     padding-top: 18px;
 }
@@ -575,10 +573,6 @@ textarea:focus {
     min-height: 52px;
 }
 
-.hole-screen .play-button {
-    margin-top: 24px;
-    padding: 22px;
-}
 .play-button {
     width: auto;
     display: block;
