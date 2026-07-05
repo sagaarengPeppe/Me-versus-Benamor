@@ -29,8 +29,9 @@ const handicapInput = document.querySelector("#handicap");
 const playerNameInput = document.querySelector("#playerName");
 const profileHandicapInput = document.querySelector("#profileHandicap");
 
-const playProfileName = document.querySelector("#playProfileName");
-const playTee = document.querySelector("#playTee");
+const heroTitle = document.querySelector("#heroTitle");
+const heroSubtitle = document.querySelector("#heroSubtitle");
+const heroDetail = document.querySelector("#heroDetail");
 
 const holeTitle = document.querySelector("#holeTitle");
 const holePar = document.querySelector("#holePar");
@@ -51,6 +52,8 @@ const statsBestScore = document.querySelector("#statsBestScore");
 const statsGoodHole = document.querySelector("#statsGoodHole");
 const statsBadHole = document.querySelector("#statsBadHole");
 const statsEclectic = document.querySelector("#statsEclectic");
+
+const roundsPlayed = document.querySelector("#roundsPlayed");
 
 const roundButtons = document.querySelectorAll(".round-button");
 const puttButtons = document.querySelectorAll(".putt-button");
@@ -138,8 +141,14 @@ function showScreen(screenName) {
 function showPlayScreen() {
     setTodayDate();
     handicapInput.value = playerProfile.handicapIndex || "";
-    playProfileName.textContent = playerProfile.name || "Player";
-    playTee.textContent = `${playerProfile.defaultTee} tee`;
+    const heroCard = Hero.getHeroCard(
+    playerProfile,
+    Storage.getRounds()
+);
+
+heroTitle.textContent = heroCard.title;
+heroSubtitle.textContent = heroCard.subtitle;
+heroDetail.textContent = heroCard.detail;
     showScreen("play");
 }
 

@@ -11,6 +11,7 @@
 
     <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Me vs Benamor">
     <link rel="apple-touch-icon" href="images/icon-192.png">
 </head>
@@ -19,35 +20,47 @@
 <main class="app">
 
     <section class="screen home-screen active" id="homeScreen">
-        <h1><strong>Me</strong> versus</h1>
-
         <img src="images/benamor-logo.png" alt="Benamor Golf" class="logo-image">
 
         <p class="tagline">Track. Learn.<br>Beat the course.</p>
 
-        <div class="scores">
-            <div class="score-row">
-                <span>Last score</span>
+        <div class="scores home-stats">
+            <div class="home-stat-card">
+                <span>LAST ROUND</span>
                 <strong id="lastScore">-</strong>
             </div>
-            <div class="score-row">
-                <span>Best score</span>
+
+            <div class="home-stat-card">
+                <span>BEST ROUND</span>
                 <strong id="bestScore">-</strong>
+            </div>
+
+            <div class="home-stat-card">
+                <span>ROUNDS PLAYED</span>
+                <strong id="roundsPlayed">0</strong>
             </div>
         </div>
 
         <button class="primary-link" id="newRound">New round</button>
-        <button class="secondary-link" id="settingsButton">Settings</button>
-        <button class="secondary-link" id="statsButton">Statistics</button>
+
+        <div class="home-actions">
+            <button class="secondary-link" id="settingsButton">Settings</button>
+            <button class="secondary-link" id="statsButton">Statistics</button>
+        </div>
     </section>
 
 
     <section class="screen play-screen" id="newRoundScreen">
         <button class="back-button" id="backToHome">‹</button>
 
-        <div class="profile-summary">
-            <span id="playProfileName">Player</span>
-            <strong id="playTee">Red tee</strong>
+        <div class="form-group">
+            <label>Player</label>
+
+            <div class="profile-summary hero-card">
+                <span id="heroTitle">Saga</span>
+                <strong id="heroSubtitle">Red tee</strong>
+                <em id="heroDetail">No rounds yet</em>
+            </div>
         </div>
 
         <div class="form-group">
@@ -85,7 +98,7 @@
 
         <div class="form-group">
             <label>Gender</label>
-            <div class="button-row">
+            <div class="button-row two-buttons">
                 <button class="choice-button gender-button active-choice" data-gender="women">Women</button>
                 <button class="choice-button gender-button" data-gender="men">Men</button>
             </div>
@@ -154,44 +167,44 @@
 
 
     <section class="screen stats-screen" id="statsScreen">
-    <button class="back-button" id="backFromStats">‹</button>
+        <button class="back-button" id="backFromStats">‹</button>
 
-    <h2>Round Review</h2>
+        <h2>Round Review</h2>
 
-    <div class="form-group">
-        <label>Course</label>
-        <select id="statsCourseSelect">
-            <option value="benamor">Benamor Golf</option>
-        </select>
-    </div>
+        <div class="form-group">
+            <label>Course</label>
+            <select id="statsCourseSelect">
+                <option value="benamor">Benamor Golf</option>
+            </select>
+        </div>
 
-    <div class="stats-card">
-        <label>FHandicap Submission</label>
-        <strong id="statsMingolf">-</strong>
-    </div>
+        <div class="stats-card">
+            <label>Handicap Submission</label>
+            <strong id="statsMingolf">-</strong>
+        </div>
 
-    <div class="stats-card">
-        <label>Best round</label>
-        <strong id="statsBestScore">-</strong>
-    </div>
+        <div class="stats-card">
+            <label>Best round</label>
+            <strong id="statsBestScore">-</strong>
+        </div>
 
-    <div class="stats-card">
-        <label>Strongest Hole</label>
-        <strong id="statsGoodHole">-</strong>
-    </div>
+        <div class="stats-card">
+            <label>Strongest Hole</label>
+            <strong id="statsGoodHole">-</strong>
+        </div>
 
-    <div class="stats-card">
-        <label>Toughest Hole</label>
-        <strong id="statsBadHole">-</strong>
-    </div>
+        <div class="stats-card">
+            <label>Toughest Hole</label>
+            <strong id="statsBadHole">-</strong>
+        </div>
 
-    <div class="stats-card">
-        <label>My Eclectic</label>
-        <div class="eclectic-grid" id="statsEclectic"></div>
-    </div>
+        <div class="stats-card">
+            <label>My Eclectic</label>
+            <div class="eclectic-grid" id="statsEclectic"></div>
+        </div>
 
-    <button class="play-button" id="statsHomeButton">Back home</button>
-</section>
+        <button class="play-button" id="statsHomeButton">Back home</button>
+    </section>
 
 
     <div class="floating-toast" id="savedToast">
@@ -203,6 +216,7 @@
 
 <script src="js/engine.js"></script>
 <script src="js/storage.js"></script>
+<script src="js/hero.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

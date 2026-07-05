@@ -1,15 +1,17 @@
 /* =========================================
-   ME VERSUS BENAMOR
-   STYLE.CSS
+   ME VS BENAMOR
+   DESIGN SYSTEM 2.0
 ========================================= */
 
 :root {
     --color-bg: #000000;
-    --color-surface: #111111;
-    --color-surface-border: #333333;
+    --color-surface: #202020;
+    --color-surface-soft: #171717;
+    --color-surface-border: #4a4a4a;
     --color-text: #ffffff;
-    --color-muted: #777777;
+    --color-muted: #8a8a8a;
     --color-accent: #2E6B3F;
+    --color-accent-light: #347a48;
 
     --font-heading: "Manrope", sans-serif;
     --font-body: "Inter", sans-serif;
@@ -19,12 +21,13 @@
     --weight-semibold: 600;
     --weight-bold: 700;
 
-    --radius-small: 4px;
     --radius-medium: 14px;
     --radius-large: 18px;
+    --radius-xl: 24px;
     --radius-pill: 999px;
 
     --screen-width: 390px;
+    --space-screen-x: 30px;
 }
 
 /* RESET */
@@ -37,8 +40,13 @@
 
 /* BASE */
 
+html,
 body {
+    min-height: 100%;
     background: var(--color-bg);
+}
+
+body {
     color: var(--color-text);
     font-family: var(--font-body);
     font-weight: var(--weight-regular);
@@ -55,7 +63,7 @@ body {
     width: 100%;
     max-width: var(--screen-width);
     min-height: 100vh;
-    padding: 34px 30px 44px;
+    padding: 34px var(--space-screen-x) 44px;
 }
 
 .screen.active {
@@ -66,121 +74,113 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+button {
     font-family: var(--font-heading);
-    font-weight: var(--weight-bold);
 }
 
-h1 {
-    font-size: 42px;
-    margin-bottom: 70px;
-}
-
-h1 strong {
+h1,
+h2,
+h3 {
     font-weight: var(--weight-bold);
 }
 
 h2 {
+    margin-bottom: 34px;
     text-align: center;
     font-size: 34px;
-    margin-bottom: 34px;
 }
 
-/* HOME */
-
-.home-screen {
-    padding: 70px 40px 40px;
-    text-align: center;
-}
-
-.logo-image {
-    width: 135px;
-    margin-bottom: 22px;
-}
-
-.tagline {
-    margin-bottom: 70px;
-
-    font-family: var(--font-heading);
-    font-size: 15px;
-    font-weight: var(--weight-semibold);
-    line-height: 1.6;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+label,
+.form-group label,
+.stats-card label,
+.home-stat-card span {
+    display: block;
+    margin-bottom: 10px;
 
     color: var(--color-accent);
-}
-
-.scores {
-    margin-bottom: 70px;
-}
-
-.score-row {
-    display: grid;
-    grid-template-columns: 1fr 70px;
-    gap: 18px;
-    align-items: center;
-    margin-bottom: 24px;
-    text-align: left;
-}
-
-.score-row span {
-    font-family: var(--font-body);
-    font-size: 30px;
-    font-weight: var(--weight-regular);
-}
-
-.score-row strong {
-    height: 32px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--color-text);
-    color: var(--color-bg);
-    border-radius: var(--radius-small);
 
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: 13px;
     font-weight: var(--weight-medium);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* SHARED SURFACES */
+
+input,
+textarea,
+select,
+.profile-summary,
+.stats-card,
+.home-stat-card,
+.live-score-bar span,
+.hole-info span,
+.choice-button,
+.check-button {
+    background: var(--color-surface);
+    border: 1px solid var(--color-surface-border);
+    box-shadow: 0 2px 12px rgba(255, 255, 255, 0.035);
+}
+
+input,
+textarea,
+select,
+.profile-summary,
+.stats-card,
+.home-stat-card {
+    border-radius: var(--radius-large);
+}
+
+.live-score-bar span,
+.hole-info span,
+.choice-button,
+.check-button {
+    border-radius: var(--radius-medium);
 }
 
 /* BUTTONS */
 
 button {
-    font-family: var(--font-heading);
-    font-weight: var(--weight-semibold);
     cursor: pointer;
 }
 
-.primary-link {
+.primary-link,
+.play-button {
+    width: auto;
+    min-width: 150px;
     display: block;
-    margin: 0 auto;
+    margin: 24px auto 0;
+    padding: 10px 22px;
 
-    background: transparent;
     border: none;
+    border-radius: var(--radius-pill);
 
+    background: var(--color-accent);
     color: var(--color-text);
 
-    font-size: 34px;
+    font-size: 15px;
+    font-weight: var(--weight-semibold);
+}
+
+.primary-link {
+    margin-top: 0;
 }
 
 .secondary-link {
-    display: block;
-    margin: 22px auto 0;
-
     background: transparent;
     border: none;
 
     color: var(--color-muted);
 
-    font-size: 18px;
-    font-weight: var(--weight-regular);
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: var(--weight-semibold);
 }
 
 .back-button {
-    margin-bottom: 48px;
+    margin-bottom: 42px;
 
     background: transparent;
     border: none;
@@ -198,57 +198,36 @@ button {
     text-align: left;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 10px;
-
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: var(--weight-medium);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-
-    color: var(--color-accent);
-}
-
 input,
-textarea {
+textarea,
+select {
     width: 100%;
-
-    background: var(--color-surface);
-    border: 1px solid var(--color-surface-border);
-    border-radius: var(--radius-medium);
 
     color: var(--color-text);
 
     font-family: var(--font-body);
-    font-weight: var(--weight-regular);
+    font-size: 15px;
+    font-weight: var(--weight-medium);
+    text-align: left;
 }
 
-input {
-    height: 58px;
-    padding: 0 20px;
-
-    font-size: 24px;
+input,
+select {
+    height: 52px;
+    padding: 0 18px;
 }
 
 textarea {
     min-height: 92px;
     padding: 16px 18px;
     resize: vertical;
-
-    font-size: 18px;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
     outline: none;
-    border-color: var(--color-accent);
-}
-
-#handicap,
-#profileHandicap {
-    text-align: center;
+    border-color: var(--color-accent-light);
 }
 
 /* CHOICE BUTTONS */
@@ -259,98 +238,171 @@ textarea:focus {
     gap: 12px;
 }
 
+.button-row.two-buttons {
+    grid-template-columns: 1fr 1fr;
+}
+
 .button-stack {
     display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 14px;
+}
+
+.round-button[data-round-type="full"] {
+    grid-column: 1 / -1;
 }
 
 .choice-button,
 .check-button {
-    min-height: 58px;
-
-    background: var(--color-surface);
-    border: 1px solid var(--color-surface-border);
-    border-radius: 16px;
+    min-height: 52px;
+    padding: 10px 18px;
 
     color: var(--color-text);
 
-    font-family: var(--font-heading);
-    font-size: 21px;
+    font-size: 15px;
     font-weight: var(--weight-semibold);
+    text-align: center;
 }
 
 .choice-button.active-choice,
 .check-button.active-choice {
     background: var(--color-accent);
     border-color: var(--color-accent);
-    color: var(--color-text);
 }
 
-.play-button {
-    width: auto;
+/* HOME */
+
+.home-screen {
+    padding: 70px 40px 40px;
+    text-align: center;
+}
+
+.home-screen h1 {
+    display: none;
+}
+
+.logo-image {
+    width: 210px;
+    margin: 70px auto 30px;
     display: block;
-    margin: 24px auto 0;
-    padding: 10px 22px;
+}
 
-    border: none;
-    border-radius: var(--radius-pill);
+.tagline {
+    margin-bottom: 54px;
 
-    background: var(--color-accent);
-    color: var(--color-text);
+    color: var(--color-accent);
 
     font-family: var(--font-heading);
     font-size: 15px;
     font-weight: var(--weight-semibold);
+    line-height: 1.6;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-/* PROFILE SUMMARY */
+.home-stats {
+    width: 240px;
+    margin: 0 auto 44px;
+
+    display: grid;
+    gap: 14px;
+}
+
+.home-stat-card {
+    padding: 14px 16px;
+    text-align: left;
+}
+
+.home-stat-card span {
+    margin-bottom: 6px;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.home-stat-card strong {
+    display: block;
+
+    color: var(--color-text);
+
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: var(--weight-medium);
+}
+
+.home-actions {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 24px;
+}
+
+/* HERO / PROFILE */
 
 .profile-summary {
-    margin-bottom: 34px;
-    padding: 18px;
-
-    border: 1px solid var(--color-surface-border);
-    border-radius: var(--radius-large);
-    background: var(--color-surface);
-
-    text-align: center;
+    margin-bottom: 0;
+    padding: 22px;
+    text-align: left;
 }
 
-.profile-summary span {
+.profile-summary span,
+.hero-card span {
     display: block;
 
     color: var(--color-muted);
 
     font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: var(--weight-regular);
+    font-size: 13px;
+    font-weight: var(--weight-medium);
 }
 
-.profile-summary strong {
+.profile-summary strong,
+.hero-card strong {
     display: block;
     margin-top: 4px;
 
     color: var(--color-accent);
 
     font-family: var(--font-body);
-    font-size: 24px;
+    font-size: 18px;
     font-weight: var(--weight-medium);
+}
+
+.hero-card em {
+    display: block;
+    margin-top: 14px;
+
+    color: var(--color-text);
+
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: var(--weight-medium);
+}
+
+/* NEW ROUND */
+
+.play-screen .form-group:first-of-type {
+    margin-bottom: 34px;
 }
 
 /* SETTINGS */
 
 .settings-screen h2 {
-    text-align: center;
-    font-size: 34px;
     margin-bottom: 34px;
 }
 
-/* HOLE SCREEN */
+/* HOLE */
+
+.hole-screen {
+    padding-top: 18px;
+}
+
+.hole-screen .back-button {
+    margin-bottom: 22px;
+}
 
 .hole-screen h2 {
-    text-align: center;
-    font-size: 34px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .live-score-bar {
@@ -358,28 +410,22 @@ textarea:focus {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 8px;
 
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .live-score-bar span {
     padding: 10px 6px;
 
-    background: var(--color-surface);
-    border: 1px solid var(--color-surface-border);
-    border-radius: var(--radius-medium);
-
-    text-align: center;
+    color: var(--color-text);
 
     font-family: var(--font-body);
     font-size: 14px;
     font-weight: var(--weight-medium);
-
-    color: var(--color-text);
+    text-align: center;
 }
 
 #liveStableford {
     color: var(--color-accent);
-    font-weight: var(--weight-medium);
 }
 
 .hole-info {
@@ -387,27 +433,28 @@ textarea:focus {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 
-    margin-bottom: 34px;
+    margin-bottom: 20px;
 }
 
 .hole-info span {
     padding: 12px 6px;
 
-    background: var(--color-surface);
-    border: 1px solid var(--color-surface-border);
-    border-radius: var(--radius-medium);
-
-    text-align: center;
+    color: var(--color-text);
 
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: 15px;
     font-weight: var(--weight-medium);
+    text-align: center;
+}
+
+.hole-screen .form-group {
+    margin-bottom: 22px;
 }
 
 .score-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 10px;
 }
 
 .putt-grid {
@@ -422,6 +469,52 @@ textarea:focus {
     gap: 14px;
 
     margin: 8px 0 30px;
+}
+
+/* STATISTICS */
+
+.stats-screen .form-group {
+    display: none;
+}
+
+.stats-card {
+    margin-bottom: 14px;
+    padding: 14px;
+    text-align: left;
+}
+
+.stats-card label {
+    margin-bottom: 6px;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.stats-card strong {
+    color: var(--color-text);
+
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.45;
+    font-weight: var(--weight-medium);
+}
+
+.eclectic-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.eclectic-grid span {
+    padding: 10px 4px;
+
+    background: var(--color-surface-soft);
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: var(--weight-medium);
 }
 
 /* TOAST */
@@ -468,117 +561,4 @@ textarea:focus {
     font-family: var(--font-body);
     font-size: 17px;
     font-weight: var(--weight-medium);
-}
-.stats-card {
-    margin-bottom: 24px;
-    padding: 18px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-surface-border);
-    border-radius: var(--radius-large);
-}
-
-.stats-card label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--color-accent);
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: var(--weight-medium);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-
-.stats-card strong {
-    font-family: var(--font-body);
-    font-size: 26px;
-    font-weight: var(--weight-medium);
-}
-
-.eclectic-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 8px;
-}
-
-.eclectic-grid span {
-    padding: 10px 4px;
-    background: #000;
-    border-radius: 10px;
-    text-align: center;
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: var(--weight-medium);
-}
-/* STATS SCREEN REFINEMENT */
-
-.stats-screen .form-group {
-    display: none;
-}
-
-.stats-card {
-    margin-bottom: 14px;
-    padding: 14px;
-}
-
-.stats-card label {
-    font-size: 11px;
-    letter-spacing: 2px;
-    margin-bottom: 6px;
-}
-
-.stats-card strong {
-    font-size: 14px;
-    line-height: 1.45;
-    font-weight: var(--weight-medium);
-}
-
-.stats-screen .play-button {
-    width: auto;
-    display: block;
-    margin: 18px auto 0;
-    padding: 10px 22px;
-    font-size: 15px;
-}
-
-.hole-screen {
-    padding-top: 18px;
-}
-
-.hole-screen .back-button {
-    margin-bottom: 22px;
-}
-
-.hole-screen h2 {
-    margin-bottom: 18px;
-}
-
-.hole-info,
-.live-score-bar {
-    margin-bottom: 20px;
-}
-
-.hole-screen .form-group {
-    margin-bottom: 22px;
-}
-
-.score-grid {
-    gap: 10px;
-}
-
-.choice-button,
-.check-button {
-    min-height: 52px;
-}
-
-.putt-grid .choice-button {
-    min-height: 52px;
-}
-
-.play-button {
-    width: auto;
-    display: block;
-    margin: 24px auto 0;
-    padding: 10px 22px;
-    font-size: 15px;
-    border-radius: var(--radius-pill);
 }
